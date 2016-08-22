@@ -1,0 +1,74 @@
+﻿@model MVC.Models.Contact
+
+@{
+    ViewBag.Title = "CreateContact";
+}
+@using (Html.BeginForm())
+{
+    <div class="form-group row">
+        <h1 class="col-xs-12 text-center">Contacto</h1>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-2">
+            @Html.LabelFor(model => model.FirstName, "Nombre:")
+        </div>
+        <div class="col-xs-4">
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nombre" } })
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+        <div class="col-xs-2">
+            @Html.LabelFor(model => model.LastName, "Apellido:")
+        </div>
+        <div class="col-xs-4">
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Apellido" } })
+            @Html.ValidationMessageFor(model => Model.LastName)
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-2">
+            @Html.LabelFor(model => model.EmailAddress, "E-mail:")
+        </div>
+        <div class="col-xs-4">
+            @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control", @placeholder = "E-mail", @type = "email" } })
+            @Html.ValidationMessageFor(model => model.EmailAddress)
+        </div>
+        <div class="col-xs-2">
+            @Html.LabelFor(model => model.Phone, "Telefono")
+        </div>
+        <div class="col-xs-4">
+            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Telefono" } })
+            @Html.ValidationMessageFor(model => model.Phone)
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-11 text-right">
+            @Html.ActionLink("Registrar", "CreateContact", "PersonContact", new { formCollection = new FormCollection() })
+            <input class="btn btn-primary" type="submit" value="Registrar" onclick="location.href='<%: Url.Action('CreateContact', 'PersonContact' ) %>'"/>
+            <input class="btn btn-danger" type="submit" value="Cancelar" onclick=""/>
+        </div>   
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 text-right">
+            @using (Html.BeginForm("CreateContact", "PersonContact", new { model = Model }, FormMethod.Post))
+            {
+                <input class="btn btn-danger" type="submit" value="Cancelar"  />
+            }
+            
+        </div>  
+        <div class="col-xs-1 text-right">
+            @using (Html.BeginForm("CreateContact", "PersonContact", FormMethod.Get))
+            {
+                <input class="btn btn-primary" type="submit" value="Registrar"  />
+            } 
+        </div> 
+             
+    </div>
+    
+
+}
+
+
+
+
+
+
